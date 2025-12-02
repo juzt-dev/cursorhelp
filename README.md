@@ -169,10 +169,36 @@ If you prefer a manual approach, you can copy:
 ```
 
 **Troubleshooting**: If commands don't appear in Cursor:
-1. Verify `.claude/commands/` exists in your project root
-2. Restart Cursor IDE completely
-3. Check that `CLAUDE.md` exists in project root
-4. If using npm install, check `node_modules/cursorhelp/` exists and run `npm run postinstall` manually
+
+1. **Verify installation**:
+   ```bash
+   # Check if files were copied
+   ls -la .claude/commands/
+   ls -la CLAUDE.md
+   ```
+
+2. **Check postinstall script output**:
+   ```bash
+   # Run postinstall manually with debug
+   CURSORHELP_DEBUG=1 node node_modules/cursorhelp/scripts/postinstall.js
+   ```
+
+3. **Verify package installation**:
+   ```bash
+   # Check if package is installed correctly
+   ls -la node_modules/cursorhelp/.claude/commands/
+   ```
+
+4. **Restart Cursor IDE completely** (not just reload window)
+
+5. **Manual copy if needed**:
+   ```bash
+   # If postinstall failed, copy manually
+   cp -r node_modules/cursorhelp/.claude ./
+   cp node_modules/cursorhelp/CLAUDE.md ./
+   ```
+
+6. **Check npm install flags**: Ensure you didn't use `--ignore-scripts` flag
 
 📖 **Learn more:** Visit the [Cursorhelp repository](https://github.com/juzt-dev/cursorhelp) for documentation and examples.
 
