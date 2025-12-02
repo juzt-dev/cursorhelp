@@ -1,8 +1,11 @@
 {
   "name": "cursorhelp",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A comprehensive boilerplate template for building professional software projects with Cursor and Claude Code.",
   "main": "index.js",
+  "bin": {
+    "cursorhelp": "./bin/cursorhelp.js"
+  },
   "scripts": {
     "test": "echo \"Warning: no test specified\" && exit 0",
     "lint": "echo \"Linting passed\"",
@@ -39,7 +42,8 @@
     "CHANGELOG.md",
     "LICENSE",
     ".claude/metadata.json",
-    "scripts/postinstall.js"
+    "scripts/postinstall.js",
+    "bin/cursorhelp.js"
   ],
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",

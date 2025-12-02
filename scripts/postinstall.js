@@ -134,10 +134,26 @@ function main() {
     
     // Verify project root exists
     if (!found || !fs.existsSync(projectRoot)) {
+      // Check if this is a global installation
+      const isGlobalInstall = !packageDir.includes(path.join('node_modules', 'cursorhelp')) && 
+                               (packageDir.includes('node_modules') || 
+                                packageDir.includes('npm') || 
+                                packageDir.includes('lib'));
+      
+      if (isGlobalInstall) {
+        log('ℹ️  Global installation detected', 'blue');
+        log('   To use cursorhelp in a project, run:', 'blue');
+        log('   cursorhelp update', 'cyan');
+        log('   Or install locally: npm install cursorhelp', 'cyan');
+        log('   See: cursorhelp help\n', 'cyan');
+        return; // Exit gracefully for global installs
+      }
+      
       log('❌ Error: Could not determine project root', 'red');
       log(`   Package dir: ${packageDir}`, 'red');
       log(`   Project root: ${projectRoot}`, 'red');
       log('   Please ensure you are installing in a valid Node.js project.', 'yellow');
+      log('   Or use the CLI tool: cursorhelp update', 'yellow');
       process.exit(1);
     }
     

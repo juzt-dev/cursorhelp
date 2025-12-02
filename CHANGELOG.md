@@ -5,7 +5,52 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.2](https://github.com/juzt-dev/cursorhelp/compare/v1.0.1...v1.0.2) (2025-01-02)
+## [1.0.4](https://github.com/juzt-dev/cursorhelp/compare/v1.0.3...v1.0.4) (2025-12-03)
+
+### 🚀 Features
+
+- **Add CLI tool for global installation** - New `cursorhelp` CLI command for global installations
+- Add `cursorhelp update` command to setup Cursor configuration in any project
+- Add `cursorhelp new --dir <directory>` command to create new projects with cursorhelp setup
+- Add `cursorhelp help` command to display usage information
+
+### 🐛 Bug Fixes
+
+- **Fix global installation issue** - Commands now work when installed globally via `npm install -g cursorhelp`
+- Fix postinstall script to gracefully handle global installations
+- Improve project root detection for both local and global installations
+
+### 🔧 Improvements
+
+- Add `bin` field to package.json to register CLI command
+- Enhanced postinstall script to detect and handle global vs local installations
+- Better error messages when package cannot find project root
+
+## [1.0.3](https://github.com/juzt-dev/cursorhelp/compare/v1.0.2...v1.0.3) (2025-12-03)
+
+### 🐛 Bug Fixes
+
+- **Fix postinstall script** - Improve error handling and logging for npm install method
+- Fix commands not appearing after npm install by enhancing postinstall script verification
+- Add debug mode (`CURSORHELP_DEBUG=1`) for troubleshooting installation issues
+- Improve project root detection logic in postinstall script
+- Add verification checks to ensure commands directory is properly copied
+
+### 🔧 Improvements
+
+- Enhanced error messages with actionable debugging steps
+- Better logging to help diagnose installation issues
+- Improved file copy error handling in postinstall script
+- Add commands count verification after installation
+
+### 📚 Documentation Updates
+
+- Update MCP configuration documentation for Cursor manual setup
+- Add comprehensive troubleshooting section for npm install method
+- Update README with detailed debugging instructions
+- Clarify MCP configuration is done in Cursor settings, not project files
+
+## [1.0.2](https://github.com/juzt-dev/cursorhelp/compare/v1.0.1...v1.0.2) (2025-12-03)
 
 ### 🐛 Bug Fixes
 
