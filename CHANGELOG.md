@@ -5,7 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.2](https://github.com/juzt-dev/cursorhelp/compare/v1.0.1...v1.0.2) (2025-12-03)
+## [1.0.2](https://github.com/juzt-dev/cursorhelp/compare/v1.0.1...v1.0.2) (2025-01-02)
+
+### 🐛 Bug Fixes
+
+- **Fix postinstall script** - Improve error handling and logging for npm install method
+- Fix commands not appearing after npm install by enhancing postinstall script verification
+- Add debug mode (`CURSORHELP_DEBUG=1`) for troubleshooting installation issues
+- Improve project root detection logic in postinstall script
+- Add verification checks to ensure commands directory is properly copied
+
+### 🔧 Improvements
+
+- Enhanced error messages with actionable debugging steps
+- Better logging to help diagnose installation issues
+- Improved file copy error handling in postinstall script
+- Add commands count verification after installation
+
+### 📚 Documentation Updates
+
+- Update MCP configuration documentation for Cursor manual setup
+- Add comprehensive troubleshooting section for npm install method
+- Update README with detailed debugging instructions
+- Clarify MCP configuration is done in Cursor settings, not project files
 
 ### 🎯 Cursor Compatibility
 
@@ -17,20 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update package.json to remove `.opencode/` from files array
 - Update release scripts to exclude `.opencode/` from archives
 
-### 📚 Documentation Updates
-
-- Update README.md to clarify Cursor integration and optional API keys
-- Update all docs files (project-overview-pdr.md, project-roadmap.md, codebase-summary.md, system-architecture.md, code-standards.md) to remove Open Code references
-- Update guide/COMMANDS.md to remove Open Code references
-- Clarify that Gemini skills are optional and only require API keys if used
-- Update CLAUDE.md description to reference Cursor IDE instead of Claude Code CLI
-
-### 🔧 Configuration Updates
-
-- Update `.claude/metadata.json` description
-- Update `scripts/prepare-release-assets.cjs` to exclude `.opencode/`
-
-**Note:** This release makes cursorhelp fully compatible with Cursor IDE. All Open Code CLI support has been removed as it's not required for Cursor.
+**Note:** This release fixes the npm install method and makes cursorhelp fully compatible with Cursor IDE. All Open Code CLI support has been removed as it's not required for Cursor.
 
 ## [1.0.1](https://github.com/juzt-dev/cursorhelp/compare/v1.0.0...v1.0.1) (2025-12-02)
 
