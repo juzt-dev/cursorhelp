@@ -47,13 +47,17 @@ Skills work seamlessly with slash commands:
 
 ---
 
-## Gemini AI Skills
+## Gemini AI Skills (Optional)
+
+**Important:** These Gemini skills are **optional** and only needed if you want to use Gemini-powered features. Cursor works perfectly without them using the built-in Claude AI.
 
 Google Gemini-powered skills for AI-driven analysis and generation.
 
 ### Configuration
 
-All Gemini skills require a `GEMINI_API_KEY`. See [API Key Setup](#gemini-api-key-setup) below.
+**Note:** Cursor includes Claude AI built-in - no API keys needed for core functionality. API keys are only required if you want to use these optional Gemini skills.
+
+All Gemini skills require a `GEMINI_API_KEY` (only if you want to use them). See [API Key Setup](#gemini-api-key-setup) below.
 
 ### gemini-audio
 
@@ -165,7 +169,9 @@ All Gemini skills require a `GEMINI_API_KEY`. See [API Key Setup](#gemini-api-ke
 
 ---
 
-### Gemini API Key Setup
+### Gemini API Key Setup (Optional)
+
+**Note:** This setup is only needed if you want to use Gemini skills. Cursor works perfectly without API keys using the built-in Claude AI.
 
 Get your API key at: https://aistudio.google.com/apikey
 

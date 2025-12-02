@@ -72,4 +72,4 @@ Document:
 - Brand alignment
 
 ### Maintenance
-Update during development. Use development rules to remind Claude Code to follow guidelines consistently.
+Update during development. Use development rules to remind AI assistants to follow guidelines consistently.

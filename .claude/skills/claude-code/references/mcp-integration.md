@@ -10,9 +10,25 @@ Model Context Protocol enables Claude Code to:
 - Use custom tools
 - Provide prompts and completions
 
-## Configuration
+## Configuration: Cursor vs Claude Code CLI
 
-MCP servers are configured in `.claude/mcp.json`:
+### Cursor IDE (Recommended)
+
+**MCP servers are configured in Cursor settings**, not in project files:
+1. Open Cursor settings: `Settings` → `Features` → `Model Context Protocol`
+2. Add MCP server configurations using the format shown below
+3. MCP tools are automatically available to agents
+4. No project file configuration needed
+
+### Claude Code CLI (Alternative)
+
+If using Claude Code CLI (not Cursor), MCP servers can be configured in `.claude/mcp.json`:
+
+**Note**: This section applies to Claude Code CLI usage. For Cursor, use IDE settings as described above.
+
+## Configuration Format
+
+MCP servers use this configuration format (for reference when configuring in Cursor settings):
 
 ### Basic Configuration
 ```json
@@ -199,14 +215,19 @@ Use environment variables for sensitive data:
 
 ### .env File
 ```bash
-# .claude/.env
+# .claude/.env (for CLI tools)
+# Or configure in Cursor settings for Cursor usage
 GITHUB_TOKEN=ghp_xxxxx
 DATABASE_URL=postgresql://user:pass@localhost/db
 BRAVE_API_KEY=BSAxxxxx
 API_TOKEN=token_xxxxx
 ```
 
-### Reference in mcp.json
+### Reference in Configuration
+
+**For Cursor**: Environment variables can be configured in Cursor's MCP server settings.
+
+**For CLI tools** (`.claude/mcp.json`):
 ```json
 {
   "mcpServers": {

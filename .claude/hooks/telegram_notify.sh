@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Telegram Notification Hook for Claude Code (Project-Specific)
+# Telegram Notification Hook for AI Assistant (Project-Specific)
 # This hook sends a notification to Telegram when Claude finishes a task
 
 set -euo pipefail
@@ -125,13 +125,13 @@ None"
 📍 *Location:* \`${PROJECT_DIR}\`"
         ;;
         
-    "SubagentStop")
-        SUBAGENT_TYPE=$(echo "$INPUT" | jq -r '.subagentType // "unknown"')
-        MESSAGE="🤖 *DevPocket Subagent Completed*
+    "AgentStop")
+        AGENT_TYPE=$(echo "$INPUT" | jq -r '.agentType // "unknown"')
+        MESSAGE="🤖 *DevPocket Agent Completed*
 
 📅 *Time:* ${TIMESTAMP}
 📁 *Project:* ${PROJECT_NAME}
-🔧 *Agent Type:* ${SUBAGENT_TYPE}
+🔧 *Agent Type:* ${AGENT_TYPE}
 🆔 *Session:* ${SESSION_ID:0:8}...
 
 Specialized agent completed its task.

@@ -47,7 +47,7 @@ Every skill consists of a required SKILL.md file and optional bundled resources:
 - Skill should be combined into specific topics, for example: `cloudflare`, `cloudflare-r2`, `cloudflare-workers`, `docker`, `gcloud` should be combined into `devops`
 - `SKILL.md` should be **less than 100 lines** and include the references of related markdown files and scripts.
 - Each script or referenced markdown file should be also **less than 100 lines**, remember that you can always split them into multiple files (**progressive disclosure** principle).
-- Descriptions in metadata of `SKILL.md` files should be both concise and still contains enough usecases of the references and scripts, this will help skills can be activated automatically during the implementation process of Claude Code.
+- Descriptions in metadata of `SKILL.md` files should be both concise and still contains enough usecases of the references and scripts, this will help skills can be activated automatically during the implementation process.
 - **Referenced markdowns**:
   - Sacrifice grammar for the sake of concision when writing these files.
   - Can reference other markdown files or scripts as well.
@@ -65,7 +65,7 @@ Every skill consists of a required SKILL.md file and optional bundled resources:
 - Referenced scripts: no limit on length, just make sure it works, no compile issues, no runtime issues, no dependencies issues, no environment issues, no platform issues.
 
 **Why?**
-Better **context engineering**: leverage **progressive disclosure** technique of Agent Skills, when agent skills are activated, Claude Code will consider to load only relevant files into the context, instead of reading all long `SKILL.md` as before.
+Better **context engineering**: leverage **progressive disclosure** technique of Agent Skills, when agent skills are activated, AI assistants will consider to load only relevant files into the context, instead of reading all long `SKILL.md` as before.
 
 #### SKILL.md (required)
 

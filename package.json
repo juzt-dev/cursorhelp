@@ -1,13 +1,14 @@
 {
   "name": "cursorhelp",
   "version": "1.0.1",
-  "description": "A comprehensive boilerplate template for building professional software projects with CLI Coding Agents (Claude Code and Open Code).",
+  "description": "A comprehensive boilerplate template for building professional software projects with Cursor and Claude Code.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Warning: no test specified\" && exit 0",
     "lint": "echo \"Linting passed\"",
     "semantic-release": "semantic-release",
-    "prepare": "husky install || true"
+    "prepare": "husky install || true",
+    "postinstall": "node scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
@@ -31,14 +32,14 @@
   "homepage": "https://github.com/juzt-dev/cursorhelp#readme",
   "files": [
     ".claude/",
-    ".opencode/",
     "plans/",
     "AGENTS.md",
     "CLAUDE.md",
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
-    ".claude/metadata.json"
+    ".claude/metadata.json",
+    "scripts/postinstall.js"
   ],
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",

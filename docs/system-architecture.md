@@ -30,7 +30,7 @@ Cursorhelp implements a multi-agent AI orchestration architecture where speciali
 ### 1. Core Layer
 
 #### 1.1 CLI Interface
-**Location**: Claude Code / Open Code CLI
+**Location**: Claude Code (via Cursor)
 **Responsibility**: User interaction and command routing
 **Key Functions**:
 - Parse slash commands
@@ -38,7 +38,7 @@ Cursorhelp implements a multi-agent AI orchestration architecture where speciali
 - Display results to users
 - Manage conversation context
 
-**Technology**: Anthropic Claude Code CLI / OpenCode AI CLI
+**Technology**: Anthropic Claude Code CLI
 
 #### 1.2 Command Parser
 **Location**: Built into CLI
@@ -50,7 +50,7 @@ Cursorhelp implements a multi-agent AI orchestration architecture where speciali
 - `$1, $2, $3...` - Individual positional arguments
 
 #### 1.3 Configuration Manager
-**Location**: `.claude/` and `.opencode/` directories
+**Location**: `.claude/` directory
 **Responsibility**: Load agent and command definitions
 **File Types**:
 - Agent definitions (`.md` with YAML frontmatter)
@@ -65,7 +65,6 @@ Cursorhelp implements a multi-agent AI orchestration architecture where speciali
 **Planning Agents**:
 - `planner` - Technical planning and architecture
 - `researcher` - Research and analysis
-- `planner-researcher` - Combined planning and research (Opus model)
 - `brainstormer` - Solution ideation
 
 **Implementation Agents**:
@@ -113,7 +112,6 @@ temperature: 0.1
 
 **Model Selection**:
 - `claude-sonnet-4.5` - Fast, efficient (most agents)
-- `claude-opus-4.5` - Advanced reasoning (planner-researcher)
 - `google/gemini-2.0-flash-exp` - Cost-effective (docs-manager)
 - `grok-code` - Specialized (git-manager)
 
@@ -407,8 +405,7 @@ Planner incorporates into plan
 #### 7.1 File-Based Storage
 
 **Configuration Data**:
-- `.claude/` - Claude Code config
-- `.opencode/` - OpenCode config
+- `.claude/` - Claude Code / Cursor config
 - `.gitignore` - Git exclusions
 - `package.json` - Node.js config
 - `.releaserc.json` - Release config
@@ -718,9 +715,8 @@ Generate Summary        │
 
 ```
 Developer Machine
-├── Claude Code CLI / Open Code CLI
+├── Claude Code CLI (via Cursor)
 ├── .claude/ (configuration)
-├── .opencode/ (configuration)
 ├── Git repository
 └── Node.js runtime
 ```
@@ -746,7 +742,6 @@ Semantic Release
 ```
 User Project
 ├── .claude/ (from template)
-├── .opencode/ (from template)
 ├── docs/ (generated)
 ├── plans/ (generated)
 ├── src/ (user code)
@@ -894,7 +889,7 @@ User Project
 
 ### External Resources
 - [Claude Code Documentation](https://docs.claude.com/)
-- [Open Code Documentation](https://opencode.ai/docs)
+- [Cursor Documentation](https://cursor.sh/docs)
 - [MCP Documentation](https://modelcontextprotocol.io/)
 - [Semantic Versioning](https://semver.org/)
 

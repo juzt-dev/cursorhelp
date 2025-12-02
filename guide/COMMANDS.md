@@ -309,7 +309,7 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 - Saves results to `plans/<plan-name>/reports/`
 - Uses different tools based on scale:
   - Scale ≤ 3: Uses `gemini` (fast)
-  - Scale 4-5: Uses `opencode` (medium)
+  - Scale 4-5: Uses advanced search tools (medium)
   - Scale ≥ 6: Spawns `Explore` subagents (thorough)
 
 **Examples**:
@@ -1321,7 +1321,7 @@ Usage: `/design:fast`, `/fix:hard`, `/custom:your-command`
 
 ### Agent Not Responding
 
-- Check if agent is defined in `.opencode/agent/`
+- Check if agent is defined in `.claude/agents/`
 - Verify agent has necessary tool permissions
 - Review error messages for specific issues
 

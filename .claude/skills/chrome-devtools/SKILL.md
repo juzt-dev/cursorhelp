@@ -94,7 +94,7 @@ node screenshot.js --url https://example.com --output ./docs/screenshots/page.pn
 **Important**: Always save screenshots to `./docs/screenshots` directory.
 
 ### Automatic Image Compression
-Screenshots are **automatically compressed** if they exceed 5MB to ensure compatibility with Gemini API and Claude Code (which have 5MB limits). This uses ImageMagick internally:
+Screenshots are **automatically compressed** if they exceed 5MB to ensure compatibility with Gemini API and AI assistants (which have 5MB limits). This uses ImageMagick internally:
 
 ```bash
 # Default: auto-compress if >5MB

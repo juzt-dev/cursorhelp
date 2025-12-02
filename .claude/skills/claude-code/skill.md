@@ -33,7 +33,7 @@ Use when users need help with:
 
 ## Core Architecture
 
-**Subagents**: Specialized AI agents (planner, code-reviewer, tester, debugger, docs-manager, ui-ux-designer, database-admin, etc.)
+**Agents**: Specialized AI agents (planner, code-reviewer, tester, debugger, docs-manager, ui-ux-designer, database-admin, etc.)
 
 **Agent Skills**: Modular capabilities with instructions, metadata, and resources that Claude uses automatically
 
@@ -180,7 +180,7 @@ When responding to Claude Code questions:
 **Documentation links:**
 - llms.txt: https://context7.com/websites/claude_en_claude-code/llms.txt?tokens=10000
   - Search for specific topics: `https://context7.com/websites/claude_en_claude-code/llms.txt?topic=<topic>&tokens=5000`
-  - Eg. Search for "subagent": `https://context7.com/websites/claude_en_claude-code/llms.txt?topic=subagent&tokens=5000`
+  - Eg. Search for "agent": `https://context7.com/websites/claude_en_claude-code/llms.txt?topic=agent&tokens=5000`
 - Main docs: https://docs.claude.com/en/docs/claude-code/
 - GitHub: https://github.com/anthropics/claude-code
 - Support: support.claude.com

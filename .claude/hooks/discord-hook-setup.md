@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Discord hook (`send-discord.sh`) sends rich embedded messages to a Discord channel when Claude Code completes implementation tasks. Messages include session time, project info, and task summaries.
+The Discord hook (`send-discord.sh`) sends rich embedded messages to a Discord channel when AI assistants complete implementation tasks. Messages include session time, project info, and task summaries.
 
 ## Features
 
@@ -20,7 +20,7 @@ The Discord hook (`send-discord.sh`) sends rich embedded messages to a Discord c
 2. Navigate to **Server Settings** → **Integrations** → **Webhooks**
 3. Click **"New Webhook"**
 4. Configure webhook:
-   - **Name:** `Claude Code Bot` (or your preference)
+   - **Name:** `AI Assistant Bot` (or your preference)
    - **Channel:** Select your target notification channel
 5. Click **"Copy Webhook URL"**
    - Format: `https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN`
@@ -75,7 +75,7 @@ chmod +x .claude/hooks/send-discord.sh
 Test the hook with a simple message:
 
 ```bash
-./.claude/hooks/send-discord.sh 'Test notification from Claude Code'
+./.claude/hooks/send-discord.sh 'Test notification from AI assistant'
 ```
 
 **Expected output:**
@@ -112,7 +112,7 @@ Send a notification with a custom message:
 ./.claude/hooks/send-discord.sh 'Fixed bug in user'\''s profile page'
 ```
 
-### Automated Usage (Claude Code Workflow)
+### Automated Usage (AI Assistant Workflow)
 
 Claude automatically calls this script when completing implementations. This is configured in `.claude/workflows/development-rules.md`:
 
@@ -155,7 +155,7 @@ fi
 Discord messages are sent as rich embeds with the following structure:
 
 **Embed Components:**
-- **Title:** 🤖 Claude Code Session Complete
+- **Title:** 🤖 AI Assistant Session Complete
 - **Description:** Your custom message content
 - **Color:** Purple (#57F287)
 - **Timestamp:** Automatic UTC timestamp
@@ -168,7 +168,7 @@ Discord messages are sent as rich embeds with the following structure:
 **Example Discord Message:**
 ```
 ╔═══════════════════════════════╗
-║ 🤖 Claude Code Session Complete
+║ 🤖 AI Assistant Session Complete
 ╠═══════════════════════════════╣
 ║ Implementation Complete
 ║

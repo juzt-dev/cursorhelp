@@ -1,6 +1,6 @@
 # Skills Installation Guide
 
-This guide explains how to install dependencies for Claude Code skills.
+This guide explains how to install dependencies for AI assistant skills.
 
 ## Overview
 

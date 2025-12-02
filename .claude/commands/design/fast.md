@@ -3,7 +3,7 @@ description: Create a quick design
 argument-hint: [tasks]
 ---
 
-Think hard to plan & start working on these tasks follow the Orchestration Protocol, Core Responsibilities, Subagents Team and Development Rules: 
+Think hard to plan & start working on these tasks follow the Orchestration Protocol, Core Responsibilities, Agents Team and Development Rules: 
 <tasks>$ARGUMENTS</tasks>
 
 **IMPORTANT**: Activate `aesthetic` and `frontend-design` skills.
@@ -11,7 +11,7 @@ Think hard to plan & start working on these tasks follow the Orchestration Proto
 **Ensure token efficiency while maintaining high quality.**
 
 ## Workflow:
-2. Use `ui-ux-designer` subagent to start the design process.
+2. Use `ui-ux-designer` agent to start the design process.
 3. If user doesn't specify, create the design in pure HTML/CSS/JS.
 4. Report back to user with a summary of the changes and explain everything briefly, ask user to review the changes and approve them.
 5. If user approves the changes, update the `./docs/design-guidelines.md` docs if needed.

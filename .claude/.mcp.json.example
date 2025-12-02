@@ -1,4 +1,5 @@
 {
+  "_comment": "MCP Configuration Reference - This file is a REFERENCE ONLY. With Cursor, MCP servers are configured in Cursor settings (Settings → Features → Model Context Protocol), not in project files. Copy the server configurations below into Cursor's MCP settings. See README.md for detailed instructions.",
   "mcpServers": {
     "context7": {
       "command": "npx",

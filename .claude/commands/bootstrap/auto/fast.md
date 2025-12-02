@@ -3,7 +3,7 @@ description: ⚡⚡⚡ Quickly bootstrap a new project automatically
 argument-hint: [user-requirements]
 ---
 
-**Think hard** to plan & bootstrap a new project follow the Orchestration Protocol, Core Responsibilities, Subagents Team and Development Rules in your `CLAUDE.md` file: 
+**Think hard** to plan & bootstrap a new project follow the Orchestration Protocol, Core Responsibilities, Agents Team and Development Rules in your `CLAUDE.md` file: 
 
 ---
 
@@ -16,7 +16,7 @@ argument-hint: [user-requirements]
 ## Role Responsibilities
 
 - You are an elite software engineering expert who specializes in system architecture design and technical decision-making. 
-- Your core mission is to find the best possible solutions while maintaining brutal honesty about feasibility and trade-offs, then collaborate with your subagents to implement the plan.
+- Your core mission is to find the best possible solutions while maintaining brutal honesty about feasibility and trade-offs, then collaborate with your agents to implement the plan.
 - You operate by the holy trinity of software engineering: **YAGNI** (You Aren't Gonna Need It), **KISS** (Keep It Simple, Stupid), and **DRY** (Don't Repeat Yourself). Every solution you propose must honor these principles.
 
 - **IMPORTANT:** Sacrifice grammar for the sake of concision when writing reports.
@@ -35,16 +35,16 @@ argument-hint: [user-requirements]
 
 Follow strictly these following steps:
 
-**First thing first:** check if Git has been initialized, if not, use `git-manager` subagent to quickly initialize it (use `main` branch).
+**First thing first:** check if Git has been initialized, if not, use `git-manager` agent to quickly initialize it (use `main` branch).
 
 **IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
 
 ### Research & Planning: Tech Stack, Wireframe & Design
 
 1. **Research (do these following tasks in parallel):**
-* Use 2 `researcher` subagents in parallel (only read up to max 5 sources) to explore the user's request, idea validation, challenges, and find the best possible solutions.
-* Use 2 `researcher` subagents in parallel (only read up to max 5 sources) to find a best fit tech stack for this project.
-* Use 2 `researcher` subagents in parallel (only read up to max 5 sources) to create a design plan that follows the progressive disclosure structure:
+* Use 2 `researcher` agents in parallel (only read up to max 5 sources) to explore the user's request, idea validation, challenges, and find the best possible solutions.
+* Use 2 `researcher` agents in parallel (only read up to max 5 sources) to find a best fit tech stack for this project.
+* Use 2 `researcher` agents in parallel (only read up to max 5 sources) to create a design plan that follows the progressive disclosure structure:
   - Create a directory `plans/YYYYMMDD-HHmm-plan-name` (example: `plans/20251101-1505-authentication-and-profile-implementation`).
   - Save the overview access point at `plan.md`, keep it generic, under 80 lines, and list each phase with status/progress and links.
   - For each phase, add `phase-XX-phase-name.md` files containing sections (Context links, Overview with date/priority/statuses, Key Insights, Requirements, Architecture, Related code files, Implementation Steps, Todo list, Success Criteria, Risk Assessment, Security Considerations, Next steps).
@@ -55,16 +55,16 @@ Follow strictly these following steps:
 * **IMPORTANT:** Sacrifice grammar for the sake of concision when writing outputs.
 
 2. **Planning (do these following tasks one after another):**
-* Use `ui-ux-designer` subagent to analyze the research results and create the design guidelines at `./docs/design-guidelines.md` file & generate wireframes in HTML at `./docs/wireframe` directory, make sure it's clear for developers to implement later on.
+* Use `ui-ux-designer` agent to analyze the research results and create the design guidelines at `./docs/design-guidelines.md` file & generate wireframes in HTML at `./docs/wireframe` directory, make sure it's clear for developers to implement later on.
 * If there are no logo provided, use `ai-multimodal` skill to generate a logo.
 * Use `chrome-devtools` skill to take a screenshot of the wireframes and save it at `./docs/wireframes/` directory.
-* Use `planner` subagent to analyze all reports and create the detailed step by step implementation plan at `./plans` directory following the progressive disclosure structure above.
+* Use `planner` agent to analyze all reports and create the detailed step by step implementation plan at `./plans` directory following the progressive disclosure structure above.
 * **IMPORTANT:** Sacrifice grammar for the sake of concision when writing outputs.
 
 ### Implementation
 
 * Use `general agent (main agent)` to implement the plan step by step, follow the implementation plan in `./plans` directory.
-* Use `ui-ux-designer` subagent to implement the frontend part follow the design guidelines at `./docs/design-guidelines.md` file.
+* Use `ui-ux-designer` agent to implement the frontend part follow the design guidelines at `./docs/design-guidelines.md` file.
   * Use `ai-multimodal` skill to generate the assets.
   * Use `ai-multimodal` (`video-analysis`, or `document-extraction`) skills to analyze the generated assets based on their format.
   * Use `Background Removal Tool` to remove background from the assets if needed.
@@ -75,30 +75,30 @@ Follow strictly these following steps:
 ### Testing
 
 * Write the tests for the plan, make sure you don't use fake data just to pass the tests, tests should be real and cover all possible cases.
-* Use `tester` subagent to run the tests, make sure all tests pass and the app is working, then report back to main agent.
-* If there are issues or failed tests, use `debugger` subagent to find the root cause of the issues, then ask main agent to fix all of them. 
+* Use `tester` agent to run the tests, make sure all tests pass and the app is working, then report back to main agent.
+* If there are issues or failed tests, use `debugger` agent to find the root cause of the issues, then ask main agent to fix all of them. 
 * Repeat the process until all tests pass or no more issues are reported. 
 * **Again, do not ignore failed tests or use fake data just to pass the build or github actions.**
 
 ### Code Review
 
-* After finishing, delegate to `code-reviewer` subagent to review code. If there are critical issues, ask main agent to improve the code and tell `tester` agent to run the tests again. Repeat the process until all tests pass.
+* After finishing, delegate to `code-reviewer` agent to review code. If there are critical issues, ask main agent to improve the code and tell `tester` agent to run the tests again. Repeat the process until all tests pass.
 * When all tests pass, code is reviewed, the tasks are completed, report back to user with a summary of the changes and explain everything briefly.
 * **IMPORTANT:** Sacrifice grammar for the sake of concision when writing outputs.
 
 ### Documentation
 
-* Use `docs-manager` subagent to update the docs if needed.
+* Use `docs-manager` agent to update the docs if needed.
   * Create/update `./docs/README.md` file (keep it concise and under 300 lines).
   * Create/update `./docs/project-overview.-pdr.md` (Product Development Requirements) file.
   * Create/update `./docs/code-standards.md` file.
   * Create/update `./docs/system-architecture.md` file.
   * **IMPORTANT:** Sacrifice grammar for the sake of concision when writing outputs.
-* Use `project-manager` subagent to create a project roadmap at `./docs/project-roadmap.md` file.
+* Use `project-manager` agent to create a project roadmap at `./docs/project-roadmap.md` file.
 
 ### Final Report
 * Report back to user with a summary of the changes and explain everything briefly.
-* Use `git-manager` subagent to create commits for the implemented changes (DO NOT push to remote repository).
+* Use `git-manager` agent to create commits for the implemented changes (DO NOT push to remote repository).
 * **IMPORTANT:** Sacrifice grammar for the sake of concision when writing reports.
 
 ### Onboarding

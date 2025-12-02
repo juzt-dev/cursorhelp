@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Discord Notification Hook for Claude Code
+# Discord Notification Hook for AI Assistant
 # This hook sends a notification to Discord when Claude finishes a task
 
 set -euo pipefail
@@ -85,7 +85,7 @@ case "$HOOK_TYPE" in
         TOTAL_TOOLS=$(echo "$INPUT" | jq '.toolsUsed | length')
 
         # Build description
-        DESCRIPTION="✅ Claude Code session completed successfully"
+        DESCRIPTION="✅ AI assistant session completed successfully"
 
         # Build tools used text
         TOOLS_TEXT=""
@@ -147,11 +147,11 @@ case "$HOOK_TYPE" in
 EOF
 )
 
-        send_discord_embed "🤖 Claude Code Session Complete" "$DESCRIPTION" 5763719 "$FIELDS"
+        send_discord_embed "🤖 AI Assistant Session Complete" "$DESCRIPTION" 5763719 "$FIELDS"
         ;;
 
-    "SubagentStop")
-        SUBAGENT_TYPE=$(echo "$INPUT" | jq -r '.subagentType // "unknown"')
+    "AgentStop")
+        AGENT_TYPE=$(echo "$INPUT" | jq -r '.agentType // "unknown"')
 
         DESCRIPTION="Specialized agent completed its task"
 
@@ -164,7 +164,7 @@ EOF
     },
     {
         "name": "🔧 Agent Type",
-        "value": "${SUBAGENT_TYPE}",
+        "value": "${AGENT_TYPE}",
         "inline": true
     },
     {
@@ -181,11 +181,11 @@ EOF
 EOF
 )
 
-        send_discord_embed "🎯 Claude Code Subagent Complete" "$DESCRIPTION" 3447003 "$FIELDS"
+        send_discord_embed "🎯 AI Assistant Agent Complete" "$DESCRIPTION" 3447003 "$FIELDS"
         ;;
 
     *)
-        DESCRIPTION="Claude Code event triggered"
+        DESCRIPTION="AI assistant event triggered"
 
         FIELDS=$(cat <<EOF
 [
@@ -213,7 +213,7 @@ EOF
 EOF
 )
 
-        send_discord_embed "📝 Claude Code Event" "$DESCRIPTION" 10070709 "$FIELDS"
+        send_discord_embed "📝 AI Assistant Event" "$DESCRIPTION" 10070709 "$FIELDS"
         ;;
 esac
 

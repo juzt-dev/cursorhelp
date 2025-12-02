@@ -15,7 +15,7 @@ MCP is an open protocol enabling AI agents to connect to external tools and data
 - Progressive disclosure of MCP capabilities (load only what's needed)
 - Intelligent tool/prompt/resource selection based on task requirements
 - Multi-server management from single config file
-- Context-efficient: subagents handle MCP discovery and execution
+- Context-efficient: agents handle MCP discovery and execution
 - Persistent tool catalog: automatically saves discovered tools to JSON for fast reference
 
 ## When to Use This Skill
@@ -25,20 +25,17 @@ Use this skill when:
 2. **Task-Based Tool Selection**: Analyzing which MCP tools are relevant for a specific task
 3. **Executing MCP Tools**: Calling MCP tools programmatically with proper parameter handling
 4. **MCP Integration**: Building or debugging MCP client implementations
-5. **Context Management**: Avoiding context pollution by delegating MCP operations to subagents
+5. **Context Management**: Avoiding context pollution by delegating MCP operations to agents
 
 ## Core Capabilities
 
 ### 1. Configuration Management
 
-MCP servers configured in `.claude/.mcp.json`.
+**For Cursor IDE**: MCP servers are configured in Cursor settings (Settings → Features → Model Context Protocol), not in project files. MCP tools configured in Cursor are automatically available to agents.
 
-**Gemini CLI Integration** (recommended): Create symlink to `.gemini/settings.json`:
-```bash
-mkdir -p .gemini && ln -sf .claude/.mcp.json .gemini/settings.json
-```
+**For CLI Tools** (optional): If using CLI scripts outside of Cursor, scripts can read from `.claude/.mcp.json` if present. This is only needed for CLI-based workflows, not for Cursor usage.
 
-See [references/configuration.md](references/configuration.md) and [references/gemini-cli-integration.md](references/gemini-cli-integration.md).
+**Gemini CLI Integration** (optional, if using Gemini CLI): Gemini CLI uses its own MCP configuration separate from Cursor. See [references/configuration.md](references/configuration.md) and [references/gemini-cli-integration.md](references/gemini-cli-integration.md) for Gemini CLI setup.
 
 **GEMINI.md Response Format**: Project root contains `GEMINI.md` that Gemini CLI auto-loads, enforcing structured JSON responses:
 ```json
@@ -80,7 +77,7 @@ echo "Take a screenshot of https://example.com" | gemini -y -m gemini-2.5-flash
 npx tsx scripts/cli.ts call-tool memory create_entities '{"entities":[...]}'
 ```
 
-**Fallback: mcp-manager Subagent**
+**Fallback: mcp-manager agent**
 
 See [references/gemini-cli-integration.md](references/gemini-cli-integration.md) for complete examples.
 
@@ -106,14 +103,14 @@ echo "Take a screenshot of https://example.com. Return JSON only per GEMINI.md i
 - Automatic tool discovery
 - Structured JSON responses (parseable by Claude)
 - GEMINI.md auto-loaded for consistent formatting
-- Faster than subagent orchestration
+- Faster than agent orchestration
 - No natural language ambiguity
 
 See [references/gemini-cli-integration.md](references/gemini-cli-integration.md) for complete guide.
 
-### Pattern 2: Subagent-Based Execution (Fallback)
+### Pattern 2: Agent-Based Execution (Fallback)
 
-Use `mcp-manager` agent when Gemini CLI unavailable. Subagent discovers tools, selects relevant ones, executes tasks, reports back.
+Use `mcp-manager` agent when Gemini CLI unavailable. Agent discovers tools, selects relevant ones, executes tasks, reports back.
 
 **Benefit**: Main context stays clean, only relevant tool definitions loaded when needed.
 
@@ -130,11 +127,13 @@ Coordinate tools across multiple servers. Each tool knows its source server for 
 ### scripts/mcp-client.ts
 
 Core MCP client manager class. Handles:
-- Config loading from `.claude/.mcp.json`
+- Config loading from `.claude/.mcp.json` (for CLI tools only, not needed in Cursor)
 - Connecting to multiple MCP servers
 - Listing tools/prompts/resources across all servers
 - Executing tools with proper error handling
 - Connection lifecycle management
+
+**Note**: In Cursor, MCP tools are accessed directly from Cursor's MCP integration. These scripts are primarily for CLI-based workflows.
 
 ### scripts/cli.ts
 
@@ -148,10 +147,16 @@ Command-line interface for MCP operations. Commands:
 
 ## Quick Start
 
-**Method 1: Gemini CLI** (recommended)
+**Method 1: Cursor MCP Integration** (primary for Cursor)
+- Configure MCP servers in Cursor settings (Settings → Features → Model Context Protocol)
+- MCP tools are automatically available to agents
+- No project file configuration needed
+- Use MCP tools directly in agent workflows
+
+**Method 2: Gemini CLI** (optional, if installed)
 ```bash
 npm install -g gemini-cli
-mkdir -p .gemini && ln -sf .claude/.mcp.json .gemini/settings.json
+# Configure Gemini CLI's MCP settings separately from Cursor
 # IMPORTANT: Use stdin piping, NOT -p flag (deprecated, skips MCP init)
 # GEMINI.md auto-loads to enforce JSON responses
 echo "Take a screenshot of https://example.com. Return JSON only per GEMINI.md instructions." | gemini -y -m gemini-2.5-flash
@@ -166,7 +171,7 @@ npx tsx cli.ts list-tools  # Saves to assets/tools.json
 npx tsx cli.ts call-tool memory create_entities '{"entities":[...]}'
 ```
 
-**Method 3: mcp-manager Subagent**
+**Method 3: mcp-manager agent**
 
 See [references/gemini-cli-integration.md](references/gemini-cli-integration.md) for complete guide.
 
@@ -193,7 +198,7 @@ See [references/mcp-protocol.md](references/mcp-protocol.md) for:
    - Use when: Need specific tool/server control
    - Execute: `npx tsx scripts/cli.ts call-tool <server> <tool> <args>`
 
-3. **mcp-manager Subagent** (Fallback): Context-efficient delegation
+3. **mcp-manager agent** (Fallback): Context-efficient delegation
    - Use when: Gemini unavailable or failed
    - Keeps main context clean
 

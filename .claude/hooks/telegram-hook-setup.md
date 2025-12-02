@@ -2,12 +2,12 @@
 
 ## Overview
 
-The Telegram hook (`telegram_notify.sh`) automatically sends notifications when Claude Code sessions stop or subagents complete tasks. It provides detailed summaries including tool usage, files modified, and operation counts.
+The Telegram hook (`telegram_notify.sh`) automatically sends notifications when AI assistant sessions stop or agents complete tasks. It provides detailed summaries including tool usage, files modified, and operation counts.
 
 ## Features
 
 - Automatic notifications on session completion
-- Subagent completion tracking
+- Agent completion tracking
 - Tool usage statistics
 - File modification tracking
 - Rich Markdown formatting
@@ -22,7 +22,7 @@ The Telegram hook (`telegram_notify.sh`) automatically sends notifications when 
 3. Follow the prompts:
    ```
    BotFather: Alright, a new bot. How are we going to call it?
-   You: Claude Code Notifier
+   You: AI Assistant Notifier
 
    BotFather: Good. Now let's choose a username for your bot.
    You: claudecode_notifier_bot
@@ -171,7 +171,7 @@ TELEGRAM_CHAT_ID=987654321
 
 See `.env.example` files in each location for templates.
 
-### 4. Configure Claude Code Hook
+### 4. Configure AI Assistant Hook
 
 Hooks are configured in `.claude/settings.local.json`:
 
@@ -184,7 +184,7 @@ Hooks are configured in `.claude/settings.local.json`:
         "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/telegram_notify.sh"
       }]
     }],
-    "SubagentStop": [{
+    "AgentStop": [{
       "hooks": [{
         "type": "command",
         "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/telegram_notify.sh"
@@ -196,8 +196,8 @@ Hooks are configured in `.claude/settings.local.json`:
 
 **Configuration Options:**
 
-- `"Stop"`: Triggers when main Claude Code session ends
-- `"SubagentStop"`: Triggers when specialized subagents complete (planner, tester, etc.)
+- `"Stop"`: Triggers when main AI assistant session ends
+- `"AgentStop"`: Triggers when specialized agents complete (planner, tester, etc.)
 - `${CLAUDE_PROJECT_DIR}`: Environment variable for project directory path
 
 ### 5. Make Script Executable
@@ -234,7 +234,7 @@ Check your Telegram chat for the test notification.
 
 ### Stop Event
 
-**Triggered when:** Main Claude Code session ends (user stops Claude or task completes)
+**Triggered when:** Main AI assistant session ends (user stops assistant or task completes)
 
 **Includes:**
 - Total tool operations count
@@ -272,11 +272,11 @@ Files Modified:
 📍 Location: `/Users/user/projects/cursorhelp`
 ```
 
-### SubagentStop Event
+### AgentStop Event
 
-**Triggered when:** Specialized subagent completes its task
+**Triggered when:** Specialized agent completes its task
 
-**Subagent Types:**
+**Agent Types:**
 - `planner` - Implementation planning
 - `tester` - Test execution and analysis
 - `debugger` - Log collection and debugging
@@ -287,7 +287,7 @@ Files Modified:
 
 **Example notification:**
 ```
-🤖 DevPocket Subagent Completed
+🤖 DevPocket Agent Completed
 
 📅 Time: 2025-10-22 14:35:20
 📁 Project: cursorhelp
@@ -355,9 +355,9 @@ Files Modified:
 📍 Location: `/Users/user/projects/frontend-app`
 ```
 
-### Subagent Completion
+### Agent Completion
 ```
-🤖 DevPocket Subagent Completed
+🤖 DevPocket Agent Completed
 
 📅 Time: 2025-10-22 11:20:15
 📁 Project: microservice
@@ -476,7 +476,7 @@ jq --version
 
 ### Hook Not Triggering
 
-**Cause:** Claude Code hook configuration incorrect or hook script not executable
+**Cause:** AI assistant hook configuration incorrect or hook script not executable
 
 **Solutions:**
 
@@ -693,13 +693,13 @@ echo '{
 }' | ./.claude/hooks/telegram_notify.sh
 ```
 
-**SubagentStop event:**
+**AgentStop event:**
 ```bash
 echo '{
-  "hookType": "SubagentStop",
+  "hookType": "AgentStop",
   "projectDir": "'"$(pwd)"'",
   "sessionId": "test-456",
-  "subagentType": "planner"
+  "agentType": "planner"
 }' | ./.claude/hooks/telegram_notify.sh
 ```
 
@@ -758,7 +758,7 @@ echo '{
 
 **Supported Events:**
 - `Stop` - Main session completion
-- `SubagentStop` - Subagent completion
+- `AgentStop` - Agent completion
 
 **Dependencies:**
 - `bash`

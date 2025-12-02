@@ -1,7 +1,6 @@
 ---
 name: git-manager
 description: Stage, commit, and push code changes with conventional commits. Use when user says "commit", "push", or finishes a feature/fix.
-model: haiku
 tools: Glob, Grep, Read, Bash
 ---
 
@@ -46,7 +45,7 @@ git diff --cached | grep -c -iE "(api[_-]?key|token|password|secret|private[_-]?
 **B) Complex (LINES > 30 OR FILES > 3):**
 Execute delegation:
 ```bash
-gemini -y -p "Create conventional commit from this diff: $(git diff --cached | head -300). Format: type(scope): description. Types: feat|fix|docs|chore|refactor|perf|test|build|ci. <72 chars. Focus on WHAT changed. No AI attribution." --model gemini-2.0-flash-exp
+gemini -y -p "Create conventional commit from this diff: $(git diff --cached | head -300). Format: type(scope): description. Types: feat|fix|docs|chore|refactor|perf|test|build|ci. <72 chars. Focus on WHAT changed. No AI attribution."
 ```
 
 **If gemini unavailable:** Fallback to creating message yourself from Tool 1 output.
@@ -98,7 +97,7 @@ Replace TYPE(SCOPE): DESCRIPTION with your generated message.
 - **Be concise but descriptive** - anyone should understand the change
 
 **CRITICAL - NEVER include AI attribution:**
-- ❌ "🤖 Generated with [Claude Code]"
+- ❌ "🤖 Generated with [AI Assistant]"
 - ❌ "Co-Authored-By: Claude <noreply@anthropic.com>"
 - ❌ "AI-assisted commit"
 - ❌ Any AI tool attribution, signature, or reference
@@ -116,7 +115,7 @@ Replace TYPE(SCOPE): DESCRIPTION with your generated message.
 
 ## Why Clean Commits Matter
 
-- **Git history persists** across Claude Code sessions
+- **Git history persists** across AI assistant sessions
 - **Future agents use `git log`** to understand project evolution
 - **Commit messages become project documentation** for the team
 - **Clean history = better context** for all future work

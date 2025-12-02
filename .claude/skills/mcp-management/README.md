@@ -4,7 +4,7 @@ Intelligent management and execution of Model Context Protocol (MCP) servers.
 
 ## Overview
 
-This skill enables Claude to discover, analyze, and execute MCP server capabilities without polluting the main context window. Perfect for context-efficient MCP integration using subagent-based architecture.
+This skill enables Claude to discover, analyze, and execute MCP server capabilities without polluting the main context window. Perfect for context-efficient MCP integration using agent-based architecture.
 
 ## Features
 
@@ -12,7 +12,7 @@ This skill enables Claude to discover, analyze, and execute MCP server capabilit
 - **Intelligent Tool Discovery**: Analyze which tools are relevant for specific tasks
 - **Progressive Disclosure**: Load only necessary tool definitions
 - **Execution Engine**: Call MCP tools with proper parameter handling
-- **Context Efficiency**: Delegate MCP operations to `mcp-manager` subagent
+- **Context Efficiency**: Delegate MCP operations to `mcp-manager` agent
 
 ## Quick Start
 
@@ -25,6 +25,13 @@ npm install
 
 ### 2. Configure MCP Servers
 
+**For Cursor IDE** (recommended):
+- Configure MCP servers in Cursor settings: `Settings` → `Features` → `Model Context Protocol`
+- MCP tools configured there are automatically available to agents
+- No project file configuration needed
+- See `.claude/.mcp.json.example` for configuration format reference
+
+**For CLI Tools** (optional, only if using scripts outside Cursor):
 Create `.claude/.mcp.json`:
 
 ```json
@@ -43,6 +50,8 @@ Create `.claude/.mcp.json`:
 ```
 
 See `.claude/.mcp.json.example` for more examples.
+
+**Note**: The `.mcp.json` file is only needed for CLI-based workflows. In Cursor, MCP is configured in IDE settings.
 
 ### 3. Test Connection
 
@@ -71,13 +80,13 @@ The LLM reads `assets/tools.json` and intelligently selects tools. No separate a
 npx ts-node scripts/cli.ts call-tool memory add '{"key":"name","value":"Alice"}'
 ```
 
-### Pattern 4: Use with Subagent
+### Pattern 4: Use with Agent
 
 In main Claude conversation:
 
 ```
 User: "I need to search the web and save results"
-Main Agent: [Spawns mcp-manager subagent]
+Main Agent: [Delegates to mcp-manager agent]
 mcp-manager: Discovers brave-search + memory tools, reports back
 Main Agent: Uses recommended tools for implementation
 ```
@@ -87,7 +96,7 @@ Main Agent: Uses recommended tools for implementation
 ```
 Main Agent (Claude)
     ↓ (delegates MCP tasks)
-mcp-manager Subagent
+mcp-manager agent
     ↓ (uses skill)
 mcp-management Skill
     ↓ (connects via)
@@ -96,7 +105,7 @@ MCP Servers (memory, filesystem, etc.)
 
 **Benefits**:
 - Main agent context stays clean
-- MCP discovery happens in isolated subagent context
+- MCP discovery happens in isolated agent context
 - Only relevant tool definitions loaded when needed
 - Reduced token usage
 
@@ -123,10 +132,12 @@ mcp-management/
 ### mcp-client.ts
 
 Core client manager class:
-- Load config from `.claude/.mcp.json`
+- Load config from `.claude/.mcp.json` (for CLI tools only, not needed in Cursor)
 - Connect to multiple MCP servers
 - List/execute tools, prompts, resources
 - Lifecycle management
+
+**Note**: In Cursor, MCP tools are accessed directly from Cursor's MCP integration. This script is primarily for CLI-based workflows.
 
 ### cli.ts
 
@@ -189,9 +200,11 @@ This architecture keeps main context clean and enables efficient MCP integration
 
 ## Troubleshooting
 
-### "Config not found"
+### "Config not found" (CLI tools only)
 
-Ensure `.claude/.mcp.json` exists and is valid JSON.
+If using CLI scripts outside Cursor, ensure `.claude/.mcp.json` exists and is valid JSON.
+
+**Note**: In Cursor, MCP is configured in IDE settings, not in project files. This error only applies to CLI-based workflows.
 
 ### "Server connection failed"
 

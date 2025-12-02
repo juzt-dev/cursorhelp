@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude AI when working with code in this repository through Cursor IDE.
 
 ## Role & Responsibilities
 
@@ -50,8 +50,8 @@ We keep all important docs in `./docs` folder and keep updating them, structure 
 ├── project-overview-pdr.md
 ├── code-standards.md
 ├── codebase-summary.md
-├── design-guidelines.md
-├── deployment-guide.md
+├── design-guidelines.md (optional)
+├── deployment-guide.md (optional)
 ├── system-architecture.md
 └── project-roadmap.md
 ```

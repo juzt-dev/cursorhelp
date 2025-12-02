@@ -1,6 +1,6 @@
 # Claude Code Boilerplate
 
-A comprehensive boilerplate template for building professional software projects with **CLI Coding Agents** (**Claude Code** and **Open Code**). This template provides a complete development environment with AI-powered agent orchestration, automated workflows, and intelligent project management.
+A comprehensive boilerplate template for building professional software projects with **Cursor** and **Claude Code**. This template provides a complete development environment with AI-powered agent orchestration, automated workflows, and intelligent project management.
 
 ## What is Claude Code?
 
@@ -8,11 +8,6 @@ A comprehensive boilerplate template for building professional software projects
 
 - [Claude Code](https://claude.com/product/claude-code)
 - [Docs](https://docs.claude.com/en/docs/claude-code/overview)
-
-**Open Code CLI Coding Agents** extend Claude Code with specialized AI agents that handle specific aspects of software development - from planning and research to testing and documentation. This creates a collaborative AI development team that works alongside human developers.
-
-- [Open Code](https://opencode.ai/)
-- [Docs](https://opencode.ai/docs)
 
 ## Related Projects & Directories
 
@@ -55,7 +50,7 @@ A comprehensive boilerplate template for building professional software projects
 - **[Windows Statusline Support](./docs/statusline-windows-support.md)** - Windows compatibility guide for Claude Code statusline
 - **[Statusline Architecture](./docs/statusline-architecture.md)** - Technical documentation for statusline implementation
 
-## Using this kit with Cursor only
+## Using this kit with Cursor
 
 This repository is optimized to be used as a **Cursor-first Claude kit**:
 
@@ -65,13 +60,12 @@ This repository is optimized to be used as a **Cursor-first Claude kit**:
   - Core docs in `docs/` (overview, standards, architecture, roadmap, codebase summary)
 - **Kept for CI/CD & tooling (not required inside app projects)**
   - `.github/**`, `scripts/**`, `tests/**`, `dist/**`
-- **Removed / not required for Cursor**
-  - `.opencode/**` (Open Code CLI agents & commands)
-  - Local log files (e.g. `terminaloutput.txt`)
+
+This kit is designed exclusively for Cursor and does not require or support Open Code CLI.
 
 ### Apply this kit to another project (Cursor)
 
-Recommended: use **Cursorhelp CLI**:
+#### Method 1: Using Cursorhelp CLI (Recommended)
 
 ```bash
 npm install -g cursorhelp-cli
@@ -87,7 +81,30 @@ This command will pull the kit from GitHub and sync:
 
 into your project so Cursor can use it immediately.
 
-If you prefer a manual approach, you can instead copy:
+#### Method 2: Using npm install
+
+You can also install the kit directly via npm:
+
+```bash
+cd /path/to/your-project
+npm install cursorhelp
+```
+
+**Automatic Setup**: The package includes a `postinstall` script that automatically:
+- Copies `.claude/**` from `node_modules/cursorhelp/` to your project root
+- Copies `CLAUDE.md` to your project root
+- Preserves existing files (won't overwrite your custom configurations)
+- Merges new files into existing `.claude/` if it already exists
+
+After installation, restart Cursor IDE to detect the commands.
+
+**Note**: If the automatic copy doesn't work, you can manually copy:
+- `CLAUDE.md` from `node_modules/cursorhelp/`
+- `.claude/**` from `node_modules/cursorhelp/.claude/`
+
+#### Method 3: Manual Copy
+
+If you prefer a manual approach, you can copy:
 
 - `CLAUDE.md`
 - `.claude/**`
@@ -96,13 +113,17 @@ If you prefer a manual approach, you can instead copy:
 ## Quick Start
 
 ### Prerequisites
-- [Claude Code](https://code.claude.com/docs/en/setup) installed and configured
+- **Cursor IDE** installed (Claude AI is integrated - no API keys needed for core functionality)
 - Git for version control
 - Node.js 18+ (or your preferred runtime)
 - Operating Systems: macOS 10.15+, Ubuntu 20.04+/Debian 10+, or Windows 10+ (with WSL 1, WSL 2, or Git for Windows)
 - Hardware: 4GB+ RAM
 
+**Note:** Cursor includes Claude AI built-in, so you don't need to install or configure any API keys to get started. API keys are only required for optional features like Gemini skills (see below).
+
 ### Setup your new project with Cursorhelp
+
+#### Option A: Using Cursorhelp CLI (Recommended)
 
 1. **Install Cursorhelp CLI**:
    ```bash
@@ -120,17 +141,38 @@ If you prefer a manual approach, you can instead copy:
    cursorhelp update --kit default
    ```
 
-3. **Start development**:
-   ```bash
-   # Begin with Claude Code
-   claude
-   # [YOLO mode - not recommended]
-   # claude --dangerously-skip-permissions
+#### Option B: Using npm install
 
-   # now you can use these specific commands
-   /plan "implement user authentication"
-   /cook "add database integration"
+1. **Navigate to your project**:
+   ```bash
+   cd /path/to/your-project
    ```
+
+2. **Install cursorhelp package**:
+   ```bash
+   npm install cursorhelp
+   ```
+   
+   The `postinstall` script will automatically copy `.claude/` and `CLAUDE.md` to your project root.
+
+3. **Restart Cursor IDE** to detect the commands.
+
+#### Start development
+
+```bash
+# Open your project in Cursor IDE
+# Claude AI is already integrated - no setup needed!
+
+# Now you can use these commands directly in Cursor:
+/plan "implement user authentication"
+/cook "add database integration"
+```
+
+**Troubleshooting**: If commands don't appear in Cursor:
+1. Verify `.claude/commands/` exists in your project root
+2. Restart Cursor IDE completely
+3. Check that `CLAUDE.md` exists in project root
+4. If using npm install, check `node_modules/cursorhelp/` exists and run `npm run postinstall` manually
 
 📖 **Learn more:** Visit the [Cursorhelp repository](https://github.com/juzt-dev/cursorhelp) for documentation and examples.
 
@@ -306,7 +348,7 @@ Project-specific instructions for Claude Code. Customize this file to define:
 - Agent coordination protocols
 - Specific workflows for your project
 
-### .opencode/agent/*.md
+### .claude/agents/*.md
 Individual agent configurations defining:
 - Agent expertise and responsibilities
 - Interaction patterns
@@ -320,9 +362,11 @@ Reusable templates for:
 - Refactoring strategies
 - Architecture decisions
 
-## Gemini Skills Configuration
+## Gemini Skills Configuration (Optional)
 
-This project includes several Gemini-powered skills that require a Google Gemini API key:
+**Important:** These Gemini skills are **optional** and only needed if you want to use Gemini-powered features. Cursor works perfectly without them using the built-in Claude AI.
+
+This project includes several optional Gemini-powered skills that require a Google Gemini API key (only if you want to use them):
 
 - **gemini-audio** - Audio analysis and speech generation
 - **gemini-video-understanding** - Video analysis and understanding
@@ -411,25 +455,34 @@ claude "What objects are in this image: photo.jpg"
 
 ✍️ Please read [my technical blog article about MCP here](https://faafospecialist.substack.com/p/claude-code-solution-to-use-mcp-servers).
 
-### Pre-requisites
+### Configuration in Cursor
 
-In ClaudeKit, you need to setup the MCP servers in `.claude/.mcp.json` file.
+**Important**: With Cursor IDE, MCP servers are configured **manually in Cursor settings**, not in project files.
 
-Copy the example file:
-```bash
-mv .claude/.mcp.json.example .claude/.mcp.json
-```
+1. **Open Cursor Settings**:
+   - Go to `Settings` → `Features` → `Model Context Protocol`
+   - Or use `Cmd/Ctrl + ,` and search for "MCP"
 
-Then add your MCP servers, below are some examples:
+2. **Add MCP Servers**:
+   - Click "Add Server" or edit the MCP configuration
+   - Use the format shown in `.claude/.mcp.json.example` as a reference
+   - Copy the server configuration JSON into Cursor's MCP settings
+
+3. **Reference File**:
+   - `.claude/.mcp.json.example` is provided as a **reference only**
+   - It shows the format and examples of common MCP servers
+   - **Do not** copy this file to `.claude/.mcp.json` - Cursor uses its own settings
+
+### Example MCP Server Configurations
+
+Below are example configurations you can copy into Cursor's MCP settings:
 
 ### [Context7](https://github.com/upstash/context7)
 ```json
 {
-   "mcpServers": {
-      "context7": {
-         "command": "npx",
-         "args": ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_API_KEY"],
-      }
+   "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp", "--api-key", "YOUR_API_KEY"]
    }
 }
 ```
@@ -438,12 +491,10 @@ Then add your MCP servers, below are some examples:
 
 ```json
 {
-   "mcpServers": {
-      "human": {
-         "command": "npx",
-         "args": ["@goonnguyen/human-mcp@latest"],
-         "env": { "GOOGLE_GEMINI_API_KEY": "YOUR_API_KEY" }
-      }
+   "human": {
+      "command": "npx",
+      "args": ["@goonnguyen/human-mcp@latest"],
+      "env": { "GOOGLE_GEMINI_API_KEY": "YOUR_API_KEY" }
    }
 }
 ```
@@ -451,14 +502,14 @@ Then add your MCP servers, below are some examples:
 ### [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp)
 ```json
 {
-   "mcpServers": {
-      "chrome-devtools": {
-         "command": "npx",
-         "args": ["-y", "chrome-devtools-mcp@latest"]
-      }
+   "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
    }
 }
 ```
+
+**Note**: These are individual server configurations. In Cursor settings, you'll add them under the `mcpServers` object. See `.claude/.mcp.json.example` for the complete format.
 
 ## Best Practices
 
@@ -553,7 +604,7 @@ claude "Plan the next development phase"
 
 ### 1. Project Setup
 - Update `CLAUDE.md` with your project specifics
-- Modify agent configurations in `.opencode/agent/`
+- Modify agent configurations in `.claude/agents/`
 - Customize plan templates in `plans/templates/`
 
 ### 2. Agent Specialization
@@ -585,8 +636,7 @@ Copyright (c) 2025 Peter Ho (juzt-dev). All rights reserved.
 
 ### Claude Code Resources
 - [Claude Code Documentation](https://claude.ai/code)
-- [Open Code CLI Documentation](https://docs.opencode.ai)
-- [Agent Development Guide](https://docs.opencode.ai/agents)
+- [Cursor Documentation](https://cursor.sh/docs)
 
 ### Community
 - [Claude Code Community](https://discord.gg/claude-code)

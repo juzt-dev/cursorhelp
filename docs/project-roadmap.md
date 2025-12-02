@@ -238,12 +238,13 @@ Enterprise-grade features and deployment options.
 
 ### Technical
 - Requires Node.js >= 18.0.0
-- Depends on Claude Code or Open Code CLI
+- Depends on Claude Code (via Cursor)
 - File-based communication has I/O overhead
 - Token limits on AI model context windows
 
 ### Operational
-- Requires API keys for AI platforms
+- **Note:** Cursor includes Claude AI built-in - no API keys needed for core functionality
+- API keys only required for optional features (e.g., Gemini skills) if you want to use them
 - GitHub Actions minutes for CI/CD
 - Internet connection for MCP tools
 - Storage for repomix output files
@@ -273,8 +274,10 @@ Enterprise-grade features and deployment options.
 ### Required
 - Node.js runtime environment
 - Git version control
-- Claude Code or Open Code CLI
-- API keys for AI platforms
+- Cursor IDE (Claude AI is integrated - no API keys needed for core functionality)
+
+### Optional
+- API keys for optional AI features (e.g., Gemini skills) - only if you want to use those features
 
 ### Optional
 - Discord webhook for notifications
@@ -374,7 +377,7 @@ Enterprise-grade features and deployment options.
 
 ### External Resources
 - [Claude Code Documentation](https://docs.claude.com/en/docs/claude-code/overview)
-- [Open Code Documentation](https://opencode.ai/docs)
+- [Cursor Documentation](https://cursor.sh/docs)
 - [Conventional Commits](https://conventionalcommits.org/)
 - [Semantic Versioning](https://semver.org/)
 - [Keep a Changelog](https://keepachangelog.com/)

@@ -6,21 +6,18 @@
 
 ## Overview
 
-Cursorhelp is a comprehensive boilerplate template for building professional software projects with CLI Coding Agents (Claude Code and Open Code). It provides a complete development environment with AI-powered agent orchestration, automated workflows, and intelligent project management.
+Cursorhelp is a comprehensive boilerplate template for building professional software projects with Cursor and Claude Code. It provides a complete development environment with AI-powered agent orchestration, automated workflows, and intelligent project management.
 
 ## Project Structure
 
 ```
 cursorhelp/
-├── .claude/               # Claude Code configuration
+├── .claude/               # Claude Code / Cursor configuration
 │   ├── agents/           # Specialized agent definitions (14 agents)
 │   ├── commands/         # Slash command implementations (50+ commands)
 │   ├── hooks/            # Git hooks and scripts
 │   ├── skills/           # Specialized skills library (20+ skills)
 │   └── workflows/        # Development workflow definitions
-├── .opencode/            # Open Code CLI configuration
-│   ├── agent/           # Agent definitions for OpenCode (13 agents)
-│   └── command/         # Command definitions for OpenCode
 ├── .github/             # GitHub Actions workflows
 │   └── workflows/       # CI/CD automation
 ├── docs/                # Project documentation
@@ -72,12 +69,6 @@ cursorhelp/
 - `scout.md` - Codebase exploration
 - `journal-writer.md` - Development journaling
 - `brainstormer.md` - Solution ideation
-
-**OpenCode Agents** (`.opencode/agent/`):
-- Similar agent definitions optimized for OpenCode CLI
-- `planner-researcher.md` - Combined planning and research
-- `solution-brainstormer.md` - Advanced brainstorming
-- `system-architecture.md` - Architecture documentation
 
 ### 2. Slash Commands System
 
@@ -283,8 +274,8 @@ None (template project)
 1. `guide/COMMANDS.md` - 7,073 tokens (18.2%)
 2. `CHANGELOG.md` - 4,836 tokens (12.4%)
 3. `README.md` - 3,261 tokens (8.4%)
-4. `.opencode/agent/ui-ux-designer.md` - 2,521 tokens (6.5%)
-5. `.opencode/agent/system-architecture.md` - 1,714 tokens (4.4%)
+4. `.claude/workflows/primary-workflow.md` - ~2,000 tokens (estimated)
+5. `docs/system-architecture.md` - ~1,800 tokens (estimated)
 
 ## Integration Capabilities
 

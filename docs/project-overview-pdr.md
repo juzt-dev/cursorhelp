@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-Cursorhelp is a comprehensive boilerplate template that revolutionizes software development by integrating AI-powered CLI coding agents (Claude Code and Open Code) into the development workflow. It provides a complete orchestration framework where specialized AI agents collaborate to handle planning, implementation, testing, code review, documentation, and project management.
+Cursorhelp is a comprehensive boilerplate template that revolutionizes software development by integrating AI-powered CLI coding agents (Cursor and Claude Code) into the development workflow. It provides a complete orchestration framework where specialized AI agents collaborate to handle planning, implementation, testing, code review, documentation, and project management.
 
 ## Project Purpose
 
@@ -441,12 +441,13 @@ Provide a production-ready template that:
 
 ### Technical Constraints
 - Requires Node.js >= 18.0.0
-- Depends on Claude Code or Open Code CLI
+- Depends on Claude Code (via Cursor)
 - File-based communication has I/O overhead
 - Token limits on AI model context windows
 
 ### Operational Constraints
-- Requires API keys for AI platforms
+- **Note:** Cursor includes Claude AI built-in - no API keys needed for core functionality
+- API keys only required for optional features (e.g., Gemini skills) if you want to use them
 - GitHub Actions minutes for CI/CD
 - Internet connection for MCP tools
 - Storage for repomix output files
@@ -518,8 +519,10 @@ Provide a production-ready template that:
 ### Required Dependencies
 - Node.js runtime environment
 - Git version control
-- Claude Code or Open Code CLI
-- API keys for AI platforms
+- Cursor IDE (Claude AI is integrated - no API keys needed for core functionality)
+
+### Optional Dependencies
+- API keys for optional AI features (e.g., Gemini skills) - only if you want to use those features
 
 ### Optional Dependencies
 - Discord webhook for notifications
@@ -587,7 +590,7 @@ Provide a production-ready template that:
 
 ### External Resources
 - [Claude Code Documentation](https://docs.claude.com/en/docs/claude-code/overview)
-- [Open Code Documentation](https://opencode.ai/docs)
+- [Cursor Documentation](https://cursor.sh/docs)
 - [Conventional Commits](https://conventionalcommits.org/)
 - [Semantic Versioning](https://semver.org/)
 - [Keep a Changelog](https://keepachangelog.com/)

@@ -1,10 +1,10 @@
-# Claude Code Notification Hooks
+# AI Assistant Notification Hooks
 
-This directory contains notification hooks for Claude Code sessions. These hooks send real-time notifications to Discord and Telegram when Claude completes tasks.
+This directory contains notification hooks for AI assistant sessions. These hooks send real-time notifications to Discord and Telegram when AI assistants complete tasks.
 
 ## Overview
 
-Claude Code hooks automate notifications and actions at specific points in your development workflow. This project includes notification systems for Discord and Telegram:
+AI assistant hooks automate notifications and actions at specific points in your development workflow. This project includes notification systems for Discord and Telegram:
 
 | Hook | File | Type | Description |
 |------|------|------|-------------|
@@ -29,7 +29,7 @@ No manual configuration needed - the Node.js dispatcher handles platform detecti
 Check **[SETUP-SUMMARY.md](./SETUP-SUMMARY.md)** for current configuration and quick reference.
 
 ### Scout Block Hook (Cross-Platform)
-Automatically blocks Claude Code from accessing heavy directories to improve performance.
+Automatically blocks AI assistants from accessing heavy directories to improve performance.
 
 **Configuration:** Already enabled in `.claude/settings.json`
 
@@ -88,7 +88,7 @@ echo '{"tool_input":{"file_path":"/tmp/test-small.js"}}' | node .claude/hooks/mo
 5. Exit code 0 ensures non-blocking behavior
 
 ### Discord Hook (Automated)
-Automatic notifications on Claude Code session events with rich embeds.
+Automatic notifications on AI assistant session events with rich embeds.
 
 **Setup:** [discord-hook-setup.md](./discord-hook-setup.md)
 
@@ -106,7 +106,7 @@ Send custom notifications to Discord with your own messages.
 ```
 
 ### Telegram Hook
-Automatic notifications on Claude Code session events.
+Automatic notifications on AI assistant session events.
 
 **Setup:** [telegram-hook-setup.md](./telegram-hook-setup.md)
 
@@ -151,7 +151,7 @@ echo '{"hookType":"Stop","projectDir":"'$(pwd)'","sessionId":"test","toolsUsed":
 | **Message Style** | Rich embeds | Rich embeds | Markdown formatted |
 | **Setup Complexity** | Simple (webhook only) | Simple (webhook only) | Medium (bot + chat ID) |
 | **Use Case** | Session monitoring | Custom messages | Session monitoring |
-| **Events** | Stop, SubagentStop | On-demand | Stop, SubagentStop |
+| **Events** | Stop, AgentStop | On-demand | Stop, AgentStop |
 | **Tool Tracking** | Yes | No | Yes |
 | **File Tracking** | Yes | No | Yes |
 
@@ -174,11 +174,11 @@ PostToolUse hook for automated code modularization suggestions.
 - Automatic continuation after suggestion
 
 ### discord_notify.sh
-Automated Discord notification hook for Claude Code events with rich embeds.
+Automated Discord notification hook for AI assistant events with rich embeds.
 
 **Triggers:**
 - `Stop` - Main session completion
-- `SubagentStop` - Subagent task completion
+- `AgentStop` - Agent task completion
 
 **Required:** `DISCORD_WEBHOOK_URL` environment variable
 
@@ -200,11 +200,11 @@ Manual Discord notification script with rich embed formatting.
 **Required:** `DISCORD_WEBHOOK_URL` environment variable
 
 ### telegram_notify.sh
-Automated Telegram notification hook for Claude Code events.
+Automated Telegram notification hook for AI assistant events.
 
 **Triggers:**
 - `Stop` - Main session completion
-- `SubagentStop` - Subagent task completion
+- `AgentStop` - Agent task completion
 
 **Required:** `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` environment variables
 
@@ -241,7 +241,7 @@ TELEGRAM_CHAT_ID=987654321
 
 See `.env.example` files in each location for templates.
 
-### Claude Code Hooks Config
+### AI Assistant Hooks Config
 
 Hooks are configured in `.claude/settings.local.json`:
 
@@ -254,7 +254,7 @@ Hooks are configured in `.claude/settings.local.json`:
         "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/telegram_notify.sh"
       }]
     }],
-    "SubagentStop": [{
+    "AgentStop": [{
       "hooks": [{
         "type": "command",
         "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/telegram_notify.sh"

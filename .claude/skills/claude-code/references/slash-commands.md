@@ -75,7 +75,7 @@ Quick fixes for small issues.
 **When to use**: Simple, straightforward fixes
 
 ### /fix:hard [issue]
-Complex issues requiring planning and subagents.
+Complex issues requiring planning and agents.
 
 ```bash
 /fix:hard database connection pooling issues
